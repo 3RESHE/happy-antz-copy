@@ -21,7 +21,7 @@ class JobPostController extends Controller implements HasMiddleware
 
     public function index()
     {
-        $jobs = JobPost::all();
+        $jobs = JobPost::where('status', 'active')->latest()->get();
         // TODO: handle route redirect
         return view('jobs.index', compact('jobs'));
     }
