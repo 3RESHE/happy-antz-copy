@@ -6,8 +6,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
   <title>Login - HappyAntz</title>
-  <link rel="icon" type="image/x-icon" href="../HAPPYANTZ.png">
+<link rel="icon" type="image/x-icon" href="./images/HAPPYANTZ.png">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -45,9 +46,10 @@
       <div class="container mx-auto flex h-16 items-center justify-between px-4">
         <div class="flex items-center gap-2">
           <a href="{{url('/')}}" class="flex items-center gap-2">
-            <img src="./images/HAPPYANTZ.png" alt="Logo" class="h-8 w-8 rounded-full">
+           <img src="{{ asset('images/HAPPYANTZ.png') }}" alt="Logo" class="h-8 w-8 rounded-full">
+
             <span class="text-xl font-bold tracking-tight">
-              <span class="text-dark-blue-start">HAPPY</span>
+              <span class="text-primary">HAPPY</span>
               <span class="text-accent">ANTZ</span>
             </span>
           </a>

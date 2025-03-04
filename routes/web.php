@@ -4,7 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('users.home');
+    return view('users.talent.home');
 });
 
 Route::get('/dashboard', function () {
@@ -18,3 +18,18 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+
+Route::prefix('employer')->group(function () {
+    Route::get('/dashboard', function () {
+        return view('users.employer.dashboard.dashboard');
+    });
+
+    Route::get('/jobs', function () {
+        return view('users.employer.jobs.jobs');
+    });
+
+    Route::get('/candidates', function () {
+        return view('users.employer.candidates.candidates');
+    });
+});
