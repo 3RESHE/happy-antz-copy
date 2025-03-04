@@ -101,6 +101,9 @@
             </div>
         </div>
     </div>
+
+
+    
 <!-- Create Job Modal -->
 <div id="createJobModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4 opacity-0 invisible transition-opacity duration-300 ease-in-out">
     <div class="bg-white rounded-lg shadow-xl w-full max-w-2xl overflow-hidden transform scale-95 transition-transform duration-300 ease-in-out">
