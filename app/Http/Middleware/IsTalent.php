@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class IsEmployer
+class IsTalent
 {
     /**
      * Handle an incoming request.
@@ -17,14 +17,13 @@ class IsEmployer
     public function handle(Request $request, Closure $next): Response
     {
         $user = Auth::user();
-        if(!$user || !$user->isEmployer())
+        if (!$user || !$user->isTalent())
         {
-            if ($user->isTalent())
+            if ($user->isEmployer())
             {
-                // TODO: handle correct redirect route
-                return redirect('/talent/dashboard');
+                return redirect('/employer/dashboard');
             } else {
-                return redirect()->route('/')->with('error', 'You are not authorized to access this page');
+                return redirect('/login')->with('error', 'You must be a talent to apply.');
             }
         }
         return $next($request);
