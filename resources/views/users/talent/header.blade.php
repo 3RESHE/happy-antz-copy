@@ -6,9 +6,10 @@
     <div class="container mx-auto flex h-16 items-center justify-between px-4">
         <div class="flex items-center gap-2">
             <a href="{{ url('/') }}" class="flex items-center gap-2">
-                <img src="./images/HAPPYANTZ.png" alt="Logo" class="h-8 w-8 rounded-full">
+               <img src="{{ asset('images/HAPPYANTZ.png') }}" alt="Logo" class="h-8 w-8 rounded-full">
+
                 <span class="text-xl font-bold tracking-tight">
-                    <span class="text-dark-blue-start">HAPPY</span>
+                    <span class="text-primary">HAPPY</span>
                     <span class="text-accent">ANTZ</span>
                 </span>
             </a>
