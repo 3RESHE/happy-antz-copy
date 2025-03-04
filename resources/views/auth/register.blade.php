@@ -30,7 +30,7 @@
 </head>
 <body class="bg-light-bg text-foreground font-sans">
   <div class="flex min-h-screen flex-col">
-    
+
     <!-- Header -->
     <header class="w-full border-b bg-secondary text-black">
       <div class="container mx-auto flex h-16 items-center justify-between px-4">
@@ -60,82 +60,82 @@
                 <h2 class="text-2xl font-bold text-center text-primary">Join the Colony!</h2>
                 <p class="text-sm text-gray-500 text-center mt-2">Create your HappyAntz account to get started</p>
                 </div>
-        
+
                 <div class="p-6">
                 <form method="POST" action="{{ route('register') }}" class="space-y-4">
                     @csrf
-        
+
                     <div class="space-y-2">
                     <x-input-label for="name" :value="__('Name')" />
-                    <x-text-input 
-                        id="name" 
-                        class="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-primary" 
-                        type="text" 
-                        name="name" 
-                        :value="old('name')" 
-                        required 
-                        autofocus 
-                        autocomplete="name" 
+                    <x-text-input
+                        id="name"
+                        class="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-primary"
+                        type="text"
+                        name="name"
+                        :value="old('name')"
+                        required
+                        autofocus
+                        autocomplete="name"
                         placeholder="Enter your full name"
                     />
                     <x-input-error :messages="$errors->get('name')" class="text-red-500 text-sm" />
                     </div>
-        
+
                     <div class="space-y-2">
                     <x-input-label for="email" :value="__('Email')" />
-                    <x-text-input 
-                        id="email" 
-                        class="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-primary" 
-                        type="email" 
-                        name="email" 
-                        :value="old('email')" 
-                        required 
-                        autocomplete="username" 
+                    <x-text-input
+                        id="email"
+                        class="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-primary"
+                        type="email"
+                        name="email"
+                        :value="old('email')"
+                        required
+                        autocomplete="username"
                         placeholder="Enter your email address"
                     />
                     <x-input-error :messages="$errors->get('email')" class="text-red-500 text-sm" />
                     </div>
-        
+
                     <div class="space-y-2">
                     <x-input-label for="password" :value="__('Password')" />
-                    <x-text-input 
-                        id="password" 
+                    <x-text-input
+                        id="password"
                         class="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-primary"
-                        type="password" 
-                        name="password" 
-                        required 
-                        autocomplete="new-password" 
+                        type="password"
+                        name="password"
+                        required
+                        autocomplete="new-password"
                         placeholder="Enter a strong password"
                     />
                     <p class="text-xs text-gray-500">Password must be at least 8 characters long with a number and special character</p>
                     <x-input-error :messages="$errors->get('password')" class="text-red-500 text-sm" />
                     </div>
-        
+
                     <div class="space-y-2">
                     <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-                    <x-text-input 
-                        id="password_confirmation" 
+                    <x-text-input
+                        id="password_confirmation"
                         class="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-primary"
-                        type="password" 
-                        name="password_confirmation" 
-                        required 
-                        autocomplete="new-password" 
+                        type="password"
+                        name="password_confirmation"
+                        required
+                        autocomplete="new-password"
                         placeholder="Re-enter your password"
                     />
                     <x-input-error :messages="$errors->get('password_confirmation')" class="text-red-500 text-sm" />
                     </div>
-        
+
                     <div class="space-y-2">
                     <label class="text-sm font-medium">
                         I am registering as
                     </label>
                     <div class="grid grid-cols-2 gap-4">
                         <div class="flex items-center p-3 border border-gray-300 rounded-md cursor-pointer hover:border-primary">
-                        <input 
-                            id="talent" 
-                            name="user-type" 
-                            type="radio" 
-                            value="talent" 
+                        <input
+                            id="talent"
+                            name="role"
+                            type="radio"
+                            value="talent"
                             checked
                             class="h-4 w-4 text-primary focus:ring-primary border-gray-300"
                         >
@@ -144,10 +144,10 @@
                         </label>
                         </div>
                         <div class="flex items-center p-3 border border-gray-300 rounded-md cursor-pointer hover:border-primary">
-                        <input 
-                            id="employer" 
-                            name="user-type" 
-                            type="radio" 
+                        <input
+                            id="employer"
+                            name="role"
+                            type="radio"
                             value="employer"
                             class="h-4 w-4 text-primary focus:ring-primary border-gray-300"
                         >
@@ -157,22 +157,22 @@
                         </div>
                     </div>
                     </div>
-        
+
                     <div class="flex items-center">
                     <input id="terms" name="terms" type="checkbox" required class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
                     <label for="terms" class="ml-2 block text-sm text-gray-700">
                         I agree to the <a href="#" class="text-primary hover:underline">Terms of Service</a> and <a href="#" class="text-primary hover:underline">Privacy Policy</a>
                     </label>
                     </div>
-        
+
                     <button type="submit" class="w-full py-2 px-4 bg-primary text-white rounded-md hover:bg-primary/90 focus:ring-2 focus:ring-primary">
                     Create Account
                     </button>
                 </form>
-        
+
                 <div class="mt-6 text-center">
                     <p class="text-sm text-gray-600">
-                    Already have an account? 
+                    Already have an account?
                     <a href="{{ route('login') }}" class="font-medium text-primary hover:underline">
                         Sign in
                     </a>
@@ -182,7 +182,7 @@
             </div>
             </div>
         </section>
-  
+
 
     <!-- Footer -->
     <footer class="w-full py-4 bg-dark-blue-start text-white">
