@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -44,5 +45,21 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function talentProfile() {
+        return $this->hasOne(TalentProfile::class);
+    }
+
+    public function employerProfile() {
+        return $this->hasOne(EmployerProfile::class);
+    }
+
+    public function isTalent() {
+        return $this->role === 'talent';
+    }
+
+    public function isEmployer() {
+        return $this->role === 'employer';
     }
 }
