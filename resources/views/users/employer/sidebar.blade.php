@@ -1,97 +1,71 @@
-<!-- Sidebar Toggle Button (Appears Only When Sidebar is Hidden on Mobile) -->
-<button id="sidebar-toggle" 
-    class="fixed top-1/2 left-0 z-50 bg-primary text-white p-2 rounded-r-md shadow-lg transition-all hover:bg-primary/80 hidden">
-    <i class="fas fa-chevron-right text-xl"></i>
+<!-- Sidebar Toggle Button (Small Arrow) -->
+<button id="sidebarToggle" class="md:hidden p-2 fixed top-1/2 left-0 transform -translate-y-1/2 bg-gray-200 rounded-r-md z-50">
+    <i id="sidebarIcon" class="fas fa-angle-right text-lg transition-transform duration-300"></i>
 </button>
 
-<!-- Sidebar -->
-<div id="sidebar" 
-    class="fixed md:relative w-64 bg-primary h-full flex flex-col shadow-2xl transition-transform transform 
-    -translate-x-full md:translate-x-0 z-40 ease-in-out duration-300">
 
-    <!-- Sidebar Header -->
-    <div class="p-6 border-b border-primary-700 flex justify-between items-center">
-        <h1 class="text-xl font-semibold text-white">Recruiter Dashboard</h1>
-        
-        <!-- Close Button (Mobile Only) -->
-        <button id="close-btn" class="md:hidden text-white">
-            <i class="fas fa-times text-2xl"></i>
+
+<!-- Sidebar -->
+<aside id="sidebar" class="w-64 bg-white border-r border-gray-200 flex flex-col h-screen fixed left-0 top-0 transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out z-40">
+    <div class="p-4 border-b border-gray-200 flex justify-between items-center">
+        <span class="text-2xl font-extrabold tracking-wide text-primary">
+            HAPPY <span class="text-secondary">ANTZ</span>
+        </span>
+        <!-- Close Button (Mobile) -->
+        <button id="sidebarClose" class="md:hidden p-2">
+            <i class="fas fa-times"></i>
         </button>
     </div>
 
 <!-- Sidebar Links -->
-<div class="flex-1 overflow-y-auto p-4">
-    <nav class="space-y-2">
+<nav class="flex-1 overflow-y-auto p-4">
+    <div class="space-y-2">
+        <!-- Dashboard -->
         <a href="{{ url('/employer/dashboard') }}" 
-           class="flex items-center space-x-3 rounded-md p-3 transition-all duration-200
-           {{ Request::is('employer/dashboard') ? 'bg-white text-primary shadow-md font-bold' : 'hover:bg-white/20 text-white' }}">
-            <i class="fas fa-home text-lg"></i>
-            <span class="font-medium">Dashboard</span>
+           class="flex items-center space-x-3 p-3 rounded-lg {{ Request::is('employer/dashboard') ? 'bg-gray-100 text-gray-700 font-bold' : 'hover:bg-gray-100 text-gray-700' }}">
+            <i class="fas fa-home w-5"></i>
+            <span>Dashboard</span>
         </a>
+
+        <!-- Jobs -->
         <a href="{{ url('/employer/jobs') }}" 
-           class="flex items-center space-x-3 rounded-md p-3 transition-all duration-200 
-           {{ Request::is('employer/jobs') ? 'bg-white text-primary shadow-md font-bold' : 'hover:bg-white/20 text-white' }}">
-            <i class="fas fa-briefcase text-lg"></i>
-            <span class="font-medium">Jobs</span>
+           class="flex items-center space-x-3 p-3 rounded-lg {{ Request::is('employer/jobs') ? 'bg-gray-100 text-gray-700 font-bold' : 'hover:bg-gray-100 text-gray-700' }}">
+            <i class="fas fa-briefcase w-5"></i>
+            <span>Jobs</span>
         </a>
+
+        <!-- Candidates -->
         <a href="{{ url('/employer/candidates') }}" 
-           class="flex items-center space-x-3 rounded-md p-3 transition-all duration-200 
-           {{ Request::is('employer/candidates') ? 'bg-white text-primary shadow-md font-bold' : 'hover:bg-white/20 text-white' }}">
-            <i class="fas fa-users text-lg"></i>
-            <span class="font-medium">Candidates</span>
+           class="flex items-center space-x-3 p-3 rounded-lg {{ Request::is('employer/candidates') ? 'bg-gray-100 text-gray-700 font-bold' : 'hover:bg-gray-100 text-gray-700' }}">
+            <i class="fas fa-users w-5"></i>
+            <span>Candidates</span>
         </a>
-    </nav>
-</div>
+    </div>
+</nav>
 
-</div>
+</aside>
 
-<!-- JavaScript for Sidebar Toggle -->
+<!-- Overlay (Mobile) -->
+<div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 hidden md:hidden"></div>
+
+<!-- JavaScript for Sidebar & Submenu Toggle -->
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-    const sidebarToggle = document.getElementById('sidebar-toggle');
-    const closeBtn = document.getElementById('close-btn');
-    const sidebar = document.getElementById('sidebar');
-
-    function updateToggleButtonVisibility() {
-        const isMobile = window.innerWidth < 768; // Tailwind md: breakpoint (768px)
-        
-        if (!isMobile) {
-            sidebarToggle.classList.add('hidden'); // Hide button on desktop
-        } else {
-            if (sidebar.classList.contains('-translate-x-full')) {
-                sidebarToggle.classList.remove('hidden'); // Show when sidebar is hidden
+    document.addEventListener("DOMContentLoaded", function () {
+        const sidebar = document.getElementById("sidebar");
+        const sidebarToggle = document.getElementById("sidebarToggle");
+        const sidebarIcon = document.getElementById("sidebarIcon");
+    
+        function toggleSidebar() {
+            sidebar.classList.toggle("-translate-x-full");
+            if (sidebar.classList.contains("-translate-x-full")) {
+                sidebarIcon.classList.remove("rotate-180");
             } else {
-                sidebarToggle.classList.add('hidden'); // Hide when sidebar is visible
+                sidebarIcon.classList.add("rotate-180");
             }
         }
-    }
-
-    // Show sidebar & hide toggle button
-    sidebarToggle.addEventListener('click', () => {
-        sidebar.classList.remove('-translate-x-full');
-        sidebar.classList.add('translate-x-0');
-        updateToggleButtonVisibility();
+    
+        sidebarToggle.addEventListener("click", toggleSidebar);
     });
+    </script>
+    
 
-    // Hide sidebar & show toggle button
-    closeBtn.addEventListener('click', () => {
-        sidebar.classList.add('-translate-x-full');
-        sidebar.classList.remove('translate-x-0');
-        updateToggleButtonVisibility();
-    });
-
-    // Close sidebar when clicking outside & show button
-    document.addEventListener('click', (event) => {
-        const isMobile = window.innerWidth < 768;
-        if (isMobile && !sidebar.contains(event.target) && !sidebarToggle.contains(event.target)) {
-            sidebar.classList.add('-translate-x-full');
-            sidebar.classList.remove('translate-x-0');
-            updateToggleButtonVisibility();
-        }
-    });
-
-    // Ensure toggle button visibility is set on page load & on resize
-    updateToggleButtonVisibility();
-    window.addEventListener('resize', updateToggleButtonVisibility);
-});
-</script>

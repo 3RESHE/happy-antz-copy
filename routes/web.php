@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TalentController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\EmployerController;
 
 Route::get('/', function () {
     if (Auth::check() && Auth::user()->role !== 'talent') {
@@ -26,18 +28,9 @@ require __DIR__.'/auth.php';
 
 
 Route::prefix('employer')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('users.employer.dashboard.dashboard');
-    })->name('employer.dashboard');
-    
-
-    Route::get('/jobs', function () {
-        return view('users.employer.jobs.jobs');
-    });
-
-    Route::get('/candidates', function () {
-        return view('users.employer.candidates.candidates');
-    });
+    Route::get('/dashboard', [EmployerController::class, 'dashboard'])->name('employer.dashboard');
+    Route::get('/jobs', [EmployerController::class, 'jobs'])->name('profile.destroy');
+    Route::get('/candidates', [EmployerController::class, 'candidates'])->name('profile.destroy');
 });
 
 
