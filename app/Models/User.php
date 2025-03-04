@@ -62,4 +62,9 @@ class User extends Authenticatable
     public function isEmployer() {
         return $this->role === 'employer';
     }
+
+    public function jobPosts()
+    {
+        return $this->hasMany(JobPost::class, 'employer_id');
+    }
 }
