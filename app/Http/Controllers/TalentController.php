@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Middleware\IsTalent;
+use App\Models\JobPost;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controllers\HasMiddleware;
+use App\Http\Middleware\IsTalent;
 use Illuminate\Routing\Controllers\Middleware;
+use Illuminate\Routing\Controllers\HasMiddleware;
 
 class TalentController extends Controller implements HasMiddleware
 {
@@ -19,6 +20,30 @@ class TalentController extends Controller implements HasMiddleware
 
     public function home()
     {
+
+        
         return view('users.talent.home');
     }
+
+
+    public function index()
+    {
+        // Fetch the latest 3 pending jobs
+        $jobs = JobPost::where('status', 'pending')->latest()->take(3)->get();
+    
+        return view('users.talent.home', compact('jobs'));
+    }
+    
+
+
+    public function allJobs()
+    {
+        $jobs = JobPost::where('status', 'pending')->latest()->paginate(5); // Paginated
+    
+        return view('users.talent.all-jobs.alljobs', compact('jobs'));
+    }
+    
+    
+
+    
 }

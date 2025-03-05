@@ -20,28 +20,34 @@ class JobApplicationController extends Controller implements HasMiddleware
         ];
     }
 
-    public function store(Request $request, JobPost $jobPost)
+    public function store(Request $request)
     {
         $request->validate([
             'cv_path' => 'required|file|mimes:pdf,doc,docx|max:5000',
             'resume_path' => 'required|file|mimes:pdf,doc,docx|max:5000',
+            'job_post_id' => 'required|exists:job_posts,id', // Ensure job_post_id is required and valid
         ]);
-
-        if (JobApplication::where('talent_id', Auth::id())->where('job_post_id', $jobPost->id)->exists())
-        {
-            return redirect()->back()->with('error', 'You have already applied to this job.');
-        }
-
+    
         $cvPath = $request->file('cv_path')->store('applications/cvs', 'public');
         $resumePath = $request->file('resume_path')->store('applications/resumes', 'public');
-
+    
         Auth::user()->applications()->create([
-            'job_post_id' => $jobPost->id,
+            'job_post_id' => $request->job_post_id, // Use the request data
             'cv_path' => $cvPath,
-            'resume_path' => $resumePath, // Placeholder until file upload
+            'resume_path' => $resumePath,
         ]);
-
-        // TODO: handle correct route redirect
-        return redirect()->route('job_posts.index')->with('success', 'Application submitted!');
+    
+        // return redirect()->route('job_posts.index')->with('success', 'Application submitted!');
+        return redirect()->back();
     }
+    
+    
+
+
+        public function show($id)
+    {
+        $job = JobPost::findOrFail($id); // Fetch job by ID or show 404 if not found
+        return view('users.talent.all-jobs.job-details', compact('job'));
+    }
+
 }

@@ -21,10 +21,14 @@ class JobPostController extends Controller implements HasMiddleware
 
     public function index()
     {
-        $jobs = JobPost::where('status', 'active')->latest()->get();
-        // TODO: handle route redirect
-        return view('jobs.index', compact('jobs'));
+        $jobs = JobPost::where('status', 'pending')->latest()->paginate(5); // Ensure pagination
+    
+        return view('users.employer.jobs.jobs', [
+            'jobs' => $jobs,
+            'message' => $jobs->isEmpty() ? 'No active jobs found.' : null
+        ]);
     }
+    
 
     public function store(Request $request)
     {
@@ -47,7 +51,7 @@ class JobPostController extends Controller implements HasMiddleware
         ]);
 
         // TODO: handle route redirect
-        return redirect()->route('employer.dashboard')->with('success', 'Job post created!');
+        return redirect()->route('employer.jobs')->with('success', 'Job post created!');
     }
 
     public function update(Request $request, JobPost $jobPost)
@@ -82,4 +86,6 @@ class JobPostController extends Controller implements HasMiddleware
         // TODO: handle route redirect
         return redirect()->route('employer.dashboard')->with('success', 'Job post deleted!');
     }
+
+
 }

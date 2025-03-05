@@ -31,6 +31,7 @@ class EmployerController extends Controller implements HasMiddleware
 
     public function candidates()
     {
+        
         return view('users.employer.candidates.candidates');
     }
     
