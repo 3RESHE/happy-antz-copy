@@ -85,7 +85,7 @@
           </div>
           <div class="flex flex-col md:flex-row justify-between items-center mt-8 pt-8 border-t border-dark-blue-end/50">
             <div class="flex items-center gap-2 mb-4 md:mb-0">
-             <img src="{{ asset('images/HAPPEANTZ.PNG') }}" alt="Logo" class="h-8 w-8 rounded-full">
+             <img src="{{ asset('images/HAPPYANTZ.PNG') }}" alt="Logo" class="h-8 w-8 rounded-full">
 
               <span class="text-xl font-bold">
                 <span class="text-white">HAPPY</span>

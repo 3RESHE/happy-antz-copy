@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Boogaloo&display=swap" rel="stylesheet">
 
 <title>HappeAntz - Hive Hustle Hire</title>
-<link rel="icon" type="image/x-icon" href="./images/HAPPEANTZ.PNG">
+<link rel="icon" type="image/x-icon" href="./images/HAPPYANTZ.PNG">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
