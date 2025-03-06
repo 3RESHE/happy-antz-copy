@@ -3,11 +3,15 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\EmployerProfile;
+use App\Models\Plan;
+use App\Models\TalentProfile;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
@@ -35,18 +39,39 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'role' => 'required|in:talent,employer',
         ]);
-    
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'role' => $request->role,
-        ]);
-    
+
+        $user = DB::transaction(function () use ($request) {
+            $plan = Plan::where('role', $request->role)
+            ->where('plan_name', 'free')
+            ->first()
+            ->id;
+
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'role' => $request->role,
+                'plan_id' => $plan,
+            ]);
+
+            if($user->role === 'talent')
+            {
+                $user->talentProfile()->create([
+                    'complete_name' => $user->name,
+                ]);
+            } else {
+                $user->employerProfile()->create([
+                    'complete_name' => $user->name
+                ]);
+            }
+
+            return $user;
+        });
+
         event(new Registered($user));
-    
+
         Auth::login($user);
-    
+
         return match ($user->role) {
             'admin' => redirect()->route('admin.dashboard'),
             'employer' => redirect()->route('employer.dashboard'),
@@ -54,5 +79,5 @@ class RegisteredUserController extends Controller
             default => redirect()->route('home'),
         };
     }
-    
+
 }

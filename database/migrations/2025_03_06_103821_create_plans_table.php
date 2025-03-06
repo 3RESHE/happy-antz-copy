@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('talent_profiles', function (Blueprint $table) {
+        Schema::create('plans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->string('complete_name');
-            $table->string('phone_number')->nullable();
-            $table->string('city_address')->nullable();
+            $table->string('plan_name'); // free, pro, premium
+            $table->string('role'); // employer or talent
+            // TODO: add price and features column if needed
             $table->timestamps();
         });
     }
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('talent_profiles');
+        Schema::dropIfExists('plans');
     }
 };
