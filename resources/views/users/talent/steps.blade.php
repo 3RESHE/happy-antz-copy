@@ -6,7 +6,7 @@
                             <div class="relative max-w-3xl mx-auto space-y-8">
                                 <h2 class="text-3xl md:text-4xl font-bold">Step into the <span class="boogaloo-regular">HIVES</span> of endless opportunities</h2>
                                 <p class="text-xl text-gray-200">
-                                    Join thousands of professionals who've found their dream careers through HappyAntz.
+                                    Join thousands of professionals who've found their dream careers through HappeAntz.
                                 </p>
                                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
                                     <button class="bg-[#FDCB58] text-black px-6 py-3 rounded-lg text-base flex items-center justify-center hover:bg-[#ffdd44] transition">

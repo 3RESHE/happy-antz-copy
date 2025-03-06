@@ -10,9 +10,10 @@
                             Hive. Hustle. Hire.
                         </h1>
                         <p class="text-xl text-gray-200 max-w-2xl mx-auto">
-                            Where <span class="boogaloo-regular">ANT</span>-credible employers and
-                            <span class="boogaloo-regular">ANT</span>-mazing talents connect.
+                            Where <span class="boogaloo-regular">ANT-credible</span> employers and
+                            <span class="boogaloo-regular">ANT-mazing</span> talents connect.
                         </p>
+                        
                         <div class="relative">
                             <div class="relative border border-white/20 p-4 rounded-lg shadow-lg bg-white/10 backdrop-blur-lg">
                                 <div class="p-0 flex flex-col md:flex-row gap-2">

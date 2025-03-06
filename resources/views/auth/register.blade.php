@@ -6,8 +6,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <title>Register - HappyAntz</title>
-  <link rel="icon" type="image/x-icon" href="./images/HAPPYANTZ.png">
+  <title>Register - HappeAntz</title>
+  <link rel="icon" type="image/x-icon" href="./images/HAPPEANTZ.PNG">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -36,7 +36,7 @@
       <div class="container mx-auto flex h-16 items-center justify-between px-4">
         <div class="flex items-center gap-2">
           <a href="{{ url('/') }}" class="flex items-center gap-2">
-           <img src="{{ asset('images/HAPPYANTZ.png') }}" alt="Logo" class="h-8 w-8 rounded-full">
+           <img src="{{ asset('images/HAPPEANTZ.PNG') }}" alt="Logo" class="h-8 w-8 rounded-full">
 
             <span class="text-xl font-bold tracking-tight">
               <span class="text-primary">HAPPY</span>
@@ -58,7 +58,7 @@
             <div class="bg-white rounded-lg shadow-md overflow-hidden">
                 <div class="p-6 border-b">
                 <h2 class="text-2xl font-bold text-center text-primary">Join the Colony!</h2>
-                <p class="text-sm text-gray-500 text-center mt-2">Create your HappyAntz account to get started</p>
+                <p class="text-sm text-gray-500 text-center mt-2">Create your HappeAntz account to get started</p>
                 </div>
 
                 <div class="p-6">
@@ -187,7 +187,7 @@
     <!-- Footer -->
     <footer class="w-full py-4 bg-dark-blue-start text-white">
       <div class="container mx-auto px-4 text-center">
-        <p class="text-sm">© <script>document.write(new Date().getFullYear())</script> HappyAntz. All rights reserved.</p>
+        <p class="text-sm">© <script>document.write(new Date().getFullYear())</script> HappeAntz. All rights reserved.</p>
       </div>
     </footer>
   </div>

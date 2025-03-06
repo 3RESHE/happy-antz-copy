@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage Recruiters - HappyAntz</title>
+    <title>Manage Recruiters - HappeAntz</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
@@ -32,7 +32,7 @@
     <aside class="w-64 bg-white border-r border-gray-200 flex flex-col h-screen fixed">
         <div class="p-4 border-b border-gray-200">
             <span class="text-2xl font-extrabold tracking-wide text-primary">
-                HAPPY <span class="text-secondary">ANTZ</span>
+                HAPPE <span class="text-secondary">ANTZ</span>
             </span>
         </div>
 
