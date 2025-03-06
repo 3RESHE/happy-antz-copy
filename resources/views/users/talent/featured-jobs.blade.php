@@ -37,7 +37,7 @@
             </div>
           </div>
           <div class="px-6 py-4 border-t">
-            <a href="#" class="w-full py-2 px-4 bg-primary text-white rounded-md hover:bg-primary/90 text-center block">
+            <a href="{{ route('jobs.show', $job->id) }}" class="w-full py-2 px-4 bg-primary text-white rounded-md hover:bg-primary/90 text-center block">
               View Details
             </a>
           </div>

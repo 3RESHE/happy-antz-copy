@@ -1,94 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage Recruiters - HappeeAntz</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#3A73C9',
-                        secondary: '#E78B00',
-                        accent: '#FDCB58',
-                        background: '#F4F6F9'
-                    }
-                }
-            }
-        }
+@include('users.admin.css')
+@include('users.admin.sidebar')
+<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 
-        // Toggle sidebar submenu
-        function toggleSubmenu() {
-            const submenu = document.getElementById('userManagementSubmenu');
-            submenu.classList.toggle('hidden');
-        }
-    </script>
-</head>
-<body class="bg-background h-screen flex">
-    <!-- Sidebar -->
-    <aside class="w-64 bg-white border-r border-gray-200 flex flex-col h-screen fixed">
-        <div class="p-4 border-b border-gray-200">
-            <span class="text-2xl font-extrabold tracking-wide text-primary">
-                HAPPE <span class="text-secondary">ANTZ</span>
-            </span>
-        </div>
-
-        <nav class="flex-1 overflow-y-auto p-4">
-            <div class="space-y-2">
-                <!-- Dashboard -->
-                <a href="index.html" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 text-gray-700">
-                    <i class="fas fa-chart-line w-5"></i>
-                    <span>Dashboard</span>
-                </a>
-
-                <!-- User Management -->
-                <div>
-                    <button onclick="toggleSubmenu()" class="w-full flex items-center justify-between p-3 rounded-lg bg-gray-100 text-gray-700">
-                        <div class="flex items-center space-x-3">
-                            <i class="fas fa-users w-5"></i>
-                            <span>User Management</span>
-                        </div>
-                        <i class="fas fa-chevron-up text-sm"></i>
-                    </button>
-                    <div id="userManagementSubmenu" class="pl-12 space-y-2 mt-2">
-                        <a href="students.html" class="block p-2 rounded-lg hover:bg-gray-100 text-gray-600">Students</a>
-                        <a href="recruiters.html" class="block p-2 rounded-lg bg-gray-100 text-primary font-medium">Recruiters</a>
-                        <a href="admins.html" class="block p-2 rounded-lg hover:bg-gray-100 text-gray-600">Admins</a>
-                    </div>
-                </div>
-
-                <!-- Admin Logs -->
-                <a href="admin-logs.html" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 text-gray-700">
-                    <i class="fas fa-history w-5"></i>
-                    <span>Admin Logs</span>
-                </a>
-            </div>
-        </nav>
-    </aside>
 
     <!-- Main Content -->
-    <main class="ml-64 flex-1 flex flex-col h-screen overflow-hidden">
-        <!-- Header -->
-        <header class="bg-white border-b border-gray-200 p-4 flex justify-between items-center sticky top-0">
-            <h1 class="text-xl font-semibold text-gray-800">Admin Panel</h1>
-            <div class="flex items-center space-x-4">
-                <button class="w-8 h-8 bg-accent rounded-full flex items-center justify-center">
-                    <i class="fas fa-user text-gray-700"></i>
-                </button>
-            </div>
-        </header>
+    <main class="flex-1 flex flex-col h-screen overflow-hidden md:ml-64">
+
+        @include('users.admin.header')
 
         <!-- Recruiters Content -->
         <div class="flex-1 overflow-y-auto p-6">
             <div class="flex justify-between items-center mb-6">
                 <h2 class="text-2xl font-bold text-gray-800">Manage Recruiters</h2>
-                <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary/90 flex items-center space-x-2">
-                    <i class="fas fa-plus"></i>
-                    <span>Add Recruiter</span>
-                </button>
             </div>
 
             <div class="bg-white rounded-lg border border-gray-200 overflow-hidden shadow-sm">
@@ -116,93 +39,95 @@
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-200">
+                        @foreach($employers as $employer)
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm font-medium text-gray-900">Nelson Lacson</div>
+                                <div class="text-sm font-medium text-gray-900">{{ $employer->name }}</div>
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">nelsonlacson010@gmail.com</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">PCU ITCT</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">0</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">1</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">0</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">1</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                <button class="text-gray-400 hover:text-gray-500">
-                                    <i class="fas fa-ellipsis-v"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm font-medium text-gray-900">Mae Rubio</div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">rubiomae24@gmail.com</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Tech Innovations Inc.</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">1</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">1</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">0</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">0</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">0</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                <button class="text-gray-400 hover:text-gray-500">
-                                    <i class="fas fa-ellipsis-v"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm font-medium text-gray-900">Ace Mayorga</div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">acemayorga15@gmail.com</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Ace Solutions</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">0</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">0</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">0</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">0</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">0</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                <button class="text-gray-400 hover:text-gray-500">
-                                    <i class="fas fa-ellipsis-v"></i>
-                                </button>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $employer->email }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $employer->company_name ?? 'N/A' }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $employer->job_posts_count }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $employer->reviewing_count }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $employer->interviewing_count }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $employer->accepted_count }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $employer->rejected_count }}</td>
+                            <td class="px-6 py-4 text-sm">
+                                <div x-data="{ open: false }" class="relative">
+                                    <button @click="open = !open" class="text-gray-500 hover:text-gray-700">
+                                        <i class="fas fa-ellipsis-v text-lg"></i>
+                                    </button>
+                            
+                                    <div x-show="open" @click.away="open = false" x-cloak
+                                        class="absolute right-0 w-32 bg-white rounded-lg shadow-lg border border-gray-200 z-10">
+                                        <a href="" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                            Edit
+                                        </a>
+                            
+                                        <form action="" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-gray-100">
+                                                Delete
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
-                        <tr>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm font-medium text-gray-900">Dannalyn Cabiladas</div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">dnnlyncbllds@gmail.com</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">DNLYN Tech</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">0</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">0</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">0</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">0</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">0</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                <button class="text-gray-400 hover:text-gray-500">
-                                    <i class="fas fa-ellipsis-v"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm font-medium text-gray-900">Myca Arabejo</div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">arabejo.myca.occbp@gmail.com</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Koy Fu Packaging Corporation</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">1</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">0</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">0</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">1</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">0</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                <button class="text-gray-400 hover:text-gray-500">
-                                    <i class="fas fa-ellipsis-v"></i>
-                                </button>
-                            </td>
-                        </tr>
+                        @endforeach
                     </tbody>
+                    
                 </table>
+
+
+                @if (isset($employers) && $employers)
+                <!-- Pagination -->
+                <div class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
+                    <div class="flex-1 flex justify-center">
+                        <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+            
+                            {{-- Previous Page Link --}}
+                            @if ($employers->onFirstPage())
+                                <span class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 cursor-not-allowed">
+                                    <span class="sr-only">Previous</span>
+                                    <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                                    </svg>
+                                </span>
+                            @else
+                                <a href="{{ $employers->previousPageUrl() }}" class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                                    <span class="sr-only">Previous</span>
+                                    <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                                    </svg>
+                                </a>
+                            @endif
+            
+                            {{-- Current Page --}}
+                            <span class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-gray-200 text-sm font-medium text-gray-700">
+                                {{ $employers->currentPage() }}
+                            </span>
+            
+                            {{-- Next Page Link --}}
+                            @if ($employers->hasMorePages())
+                                <a href="{{ $employers->nextPageUrl() }}" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                                    <span class="sr-only">Next</span>
+                                    <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                    </svg>
+                                </a>
+                            @else
+                                <span class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 cursor-not-allowed">
+                                    <span class="sr-only">Next</span>
+                                    <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                    </svg>
+                                </span>
+                            @endif
+                        </nav>
+                    </div>
+                </div>
+            @endif
             </div>
         </div>
     </main>

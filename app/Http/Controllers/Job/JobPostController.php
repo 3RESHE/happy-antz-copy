@@ -22,12 +22,18 @@ class JobPostController extends Controller implements HasMiddleware
 
     public function index()
     {
-        $jobs = JobPost::where('status', 'pending')->latest()->paginate(5); // Ensure pagination
-
-        return view('users.employer.jobs.jobs', [
-            'jobs' => $jobs,
-            'message' => $jobs->isEmpty() ? 'No active jobs found.' : null
-        ]);
+        {
+            $jobs = JobPost::where('status', 'pending')
+                ->where('employer_id', auth()->id()) // Filter jobs by employer
+                ->latest()
+                ->paginate(5); // Ensure pagination
+        
+            return view('users.employer.jobs.jobs', [
+                'jobs' => $jobs,
+                'message' => $jobs->isEmpty() ? 'No active jobs found.' : null
+            ]);
+        }
+        
     }
 
 

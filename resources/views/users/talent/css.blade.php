@@ -58,5 +58,5 @@
 }
   </style>
 </head>
-<body class="bg-light-bg text-foreground font-sans">
+<body class="bg-light-bg text-foreground font-sans min-h-screen">
   <div class="flex min-h-screen flex-col">

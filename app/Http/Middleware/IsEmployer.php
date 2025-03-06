@@ -22,9 +22,9 @@ class IsEmployer
             if ($user->isTalent())
             {
                 // TODO: handle correct redirect route
-                return redirect('/talent/dashboard');
+                return redirect('/talent/home');
             } else {
-                return redirect()->route('/')->with('error', 'You are not authorized to access this page');
+                return redirect('/')->with('error', 'You are not authorized to access this page');
             }
         }
         return $next($request);

@@ -1,7 +1,7 @@
 @include('users.talent.css')
 @include('users.talent.header')
 
-<section class="w-full py-12 md:py-24 bg-white">
+<section  class="w-full py-12 md:py-24 bg-white ">
   <div class="container mx-auto px-4 md:px-6">
     <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200">
       <div class="p-6">

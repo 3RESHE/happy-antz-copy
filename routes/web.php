@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Employer\EmployerController;
 use App\Http\Controllers\Job\JobApplicationController;
 use App\Http\Controllers\Job\JobPostController;
@@ -68,23 +69,11 @@ Route::prefix('talent')->group(function () {
 
 
 Route::prefix('admin')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('users.admin.dashboard.dashboard');
-    })->name('admin.dashboard');
+    
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+    Route::get('/logs', [AdminController::class, 'logs'])->name('admin.logs');
 
-    Route::get('/logs', function () {
-        return view('users.admin.logs.admin-logs');
-    });
-
-    Route::get('/user-admin', function () {
-        return view('users.admin.user-management.admin');
-    });
-
-    Route::get('/user-employer', function () {
-        return view('users.admin.user-management.employer');
-    });
-
-    Route::get('/user-talent', function () {
-        return view('users.admin.user-management.talent');
-    });
+    Route::get('/user-admins', [AdminController::class, 'admins'])->name('admin.admins');
+    Route::get('/user-employers', [AdminController::class, 'employers'])->name('admin.employers');
+    Route::get('/user-talents', [AdminController::class, 'talents'])->name('admin.talents');
 });
