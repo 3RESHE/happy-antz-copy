@@ -88,7 +88,7 @@
              <img src="{{ asset('images/HAPPYANTZ.PNG') }}" alt="Logo" class="h-8 w-8 rounded-full">
 
               <span class="text-xl font-bold">
-                <span class="text-white">HAPPY</span>
+                <span class="text-white">HAPPEE</span>
                 <span class="text-secondary">ANTZ</span>
               </span>
             </div>
