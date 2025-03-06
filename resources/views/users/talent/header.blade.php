@@ -13,7 +13,7 @@
             <a href="{{ url('/') }}" class="flex items-center gap-2">
                 <img src="{{ asset('images/HAPPYANTZ.PNG') }}" alt="Logo" class="h-8 w-8 rounded-full">
                 <span class="text-xl font-bold tracking-tight">
-                    <span class="text-primary">HAPPE</span>
+                    <span class="text-primary">HAPPEE</span>
                     <span class="text-accent">ANTZ</span>
                 </span>
             </a>

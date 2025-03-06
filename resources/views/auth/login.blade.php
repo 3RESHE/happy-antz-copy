@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <title>Login - HappeAntz</title>
+  <title>Login - HappeeAntz</title>
 <link rel="icon" type="image/x-icon" href="./images/HAPPYANTZ.PNG">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -49,7 +49,7 @@
            <img src="{{ asset('images/HAPPYANTZ.PNG') }}" alt="Logo" class="h-8 w-8 rounded-full">
 
             <span class="text-xl font-bold tracking-tight">
-              <span class="text-primary">HAPPY</span>
+              <span class="text-primary">HAPPEE</span>
               <span class="text-accent">ANTZ</span>
             </span>
           </a>
@@ -68,7 +68,7 @@
         <div class="bg-white rounded-lg shadow-md overflow-hidden">
           <div class="p-6 border-b">
             <h2 class="text-2xl font-bold text-center text-primary">Welcome Back!</h2>
-            <p class="text-sm text-gray-500 text-center mt-2">Sign in to access your HappeAntz account</p>
+            <p class="text-sm text-gray-500 text-center mt-2">Sign in to access your HappeeAntz account</p>
           </div>
           
           <div class="p-6">
@@ -152,7 +152,7 @@
     <!-- Footer -->
     <footer class="w-full py-4 bg-dark-blue-start text-white">
       <div class="container mx-auto px-4 text-center">
-        <p class="text-sm">© <script>document.write(new Date().getFullYear())</script> HappeAntz. All rights reserved.</p>
+        <p class="text-sm">© <script>document.write(new Date().getFullYear())</script> HappeeAntz. All rights reserved.</p>
       </div>
     </footer>
   </div>
