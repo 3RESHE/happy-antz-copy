@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Employer;
 
+use App\Http\Controllers\Controller;
 use App\Http\Middleware\IsEmployer;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;
@@ -31,8 +32,8 @@ class EmployerController extends Controller implements HasMiddleware
 
     public function candidates()
     {
-        
+
         return view('users.employer.candidates.candidates');
     }
-    
+
 }

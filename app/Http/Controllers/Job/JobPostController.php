@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Job;
 
+use App\Http\Controllers\Controller;
 use App\Http\Middleware\IsEmployer;
 use App\Models\JobPost;
 use Illuminate\Http\Request;
@@ -22,13 +23,13 @@ class JobPostController extends Controller implements HasMiddleware
     public function index()
     {
         $jobs = JobPost::where('status', 'pending')->latest()->paginate(5); // Ensure pagination
-    
+
         return view('users.employer.jobs.jobs', [
             'jobs' => $jobs,
             'message' => $jobs->isEmpty() ? 'No active jobs found.' : null
         ]);
     }
-    
+
 
     public function store(Request $request)
     {
