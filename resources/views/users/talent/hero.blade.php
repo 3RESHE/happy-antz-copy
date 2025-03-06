@@ -7,7 +7,7 @@
                     <div class="max-w-4xl mx-auto text-center space-y-8">
     
                         <h1 class="text-5xl md:text-7xl font-bold boogaloo-regular tracking-tight">
-                            Hive. Hustle.Hire.
+                            Hive. Hustle. Hire.
                         </h1>
                         <p class="text-xl text-gray-200 max-w-2xl mx-auto">
                             Where <span class="boogaloo-regular">ANT</span>-credible employers and

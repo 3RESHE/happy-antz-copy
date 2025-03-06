@@ -167,6 +167,10 @@
                           </li>
                           <li class="flex items-start gap-2">
                             <span class="text-accent">✓</span>
+                            <span>Unlimited viewing of job listings</span>
+                          </li>
+                          <li class="flex items-start gap-2">
+                            <span class="text-accent">✓</span>
                             <span>Create profile and upload your resume</span>
                           </li>
                           <li class="flex items-start gap-2">
@@ -244,7 +248,7 @@
                           </li>
                           <li class="flex items-start gap-2">
                             <span class="text-accent">✓</span>
-                            <span>Stand out in the job marketplace for only Php 799,00 / month</span>
+                            <span>Stand out in the job marketplace for only Php 799.00 / month</span>
                           </li>
                           <li class="flex items-start gap-2">
                             <span class="text-accent">✓</span>

@@ -35,18 +35,24 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'role' => 'required|in:talent,employer',
         ]);
-
+    
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'role' => $request->role,
         ]);
-
+    
         event(new Registered($user));
-
+    
         Auth::login($user);
-
-        return redirect(route('dashboard', absolute: false));
+    
+        return match ($user->role) {
+            'admin' => redirect()->route('admin.dashboard'),
+            'employer' => redirect()->route('employer.dashboard'),
+            'talent' => redirect()->route('talent.dashboard'),
+            default => redirect()->route('home'),
+        };
     }
+    
 }

@@ -1,10 +1,6 @@
 @include('users.employer.css')
 @include('users.employer.sidebar')
 
-<!-- Mobile Sidebar Toggle -->
-<button id="sidebarToggle" class="md:hidden fixed top-4 left-4 z-50 bg-accent text-white p-2 rounded-md shadow-lg">
-    <i class="fas fa-bars"></i>
-</button>
 
 <!-- Main Content -->
 <main class="lg:ml-64 flex-1 flex flex-col min-h-screen overflow-hidden w-full">
