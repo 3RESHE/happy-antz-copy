@@ -59,8 +59,11 @@ Route::prefix('employer')->group(function () {
 
 
 Route::prefix('talent')->group(function () {
-    Route::get('/home', [TalentController::class, 'index'])->name('talent.dashboard');
+
     Route::get('/home/all-jobs', [TalentController::class, 'allJobs'])->name('talent.all_jobs');
+    
+    Route::get('/home', [TalentController::class, 'index'])->name('talent.dashboard');
+
 
     Route::get('/jobs/{id}', [JobApplicationController::class, 'show'])->name('jobs.show');
     Route::post('talent/job_applications', [JobApplicationController::class, 'store'])->name('job_applications.store');

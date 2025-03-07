@@ -32,10 +32,36 @@ class TalentController extends Controller implements HasMiddleware
         return view('users.talent.home', compact('jobs'));
     }
 
-    public function allJobs()
+    public function allJobs(Request $request)
     {
-        $jobs = JobPost::where('status', 'pending')->latest()->paginate(5); // Paginated
-
+        $query = JobPost::where('status', 'pending')
+                        ->with('employer'); // Eager load employer relationship
+    
+        if ($search = $request->input('search')) {
+            $query->where(function ($q) use ($search) {
+                $q->where('title', 'like', "%{$search}%")
+                  ->orWhere('description', 'like', "%{$search}%")
+                  ->orWhereHas('employer', function ($q) use ($search) {
+                      $q->where('name', 'like', "%{$search}%"); // Assuming 'name' is the column in users table
+                  });
+            });
+        }
+    
+        if ($location = $request->input('location')) {
+            $query->where('location', $location);
+        }
+    
+        if ($type = $request->input('type')) {
+            $query->where('type', $type);
+        }
+    
+        if ($salary = $request->input('salary')) {
+            $query->where('salary_range', 'like', "%{$salary}%");
+        }
+    
+        $jobs = $query->latest()->paginate(5);
+        $jobs->appends($request->all());
+    
         return view('users.talent.all-jobs.alljobs', compact('jobs'));
     }
 }
