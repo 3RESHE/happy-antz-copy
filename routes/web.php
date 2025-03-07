@@ -51,10 +51,11 @@ Route::prefix('employer')->group(function () {
     Route::get('/dashboard', [EmployerController::class, 'dashboard'])->name('employer.dashboard');
     Route::get('/candidates', [EmployerController::class, 'candidates'])->name('profile.destroy');
 
-
-    Route::post('/jobs/store', [JobPostController::class, 'store'])->name('jobs.store');
     Route::get('/jobs', [JobPostController::class, 'index'])->name('employer.jobs');
-    Route::get('/jobs/destroy', [JobPostController::class, 'destroy'])->name('jobs.destroy');
+    Route::post('/jobs/store', [JobPostController::class, 'store'])->name('jobs.store');
+    Route::put('/jobs/{id}/update', [JobPostController::class, 'update'])->name('jobs.update');
+    Route::delete('/jobs/{id}/delete', [JobPostController::class, 'destroy'])->name('jobs.destroy');
+
 });
 
 
