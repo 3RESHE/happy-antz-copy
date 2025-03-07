@@ -19,12 +19,6 @@
                 }
             }
         }
-
-        // Toggle sidebar submenu
-        function toggleSubmenu() {
-            const submenu = document.getElementById('userManagementSubmenu');
-            submenu.classList.toggle('hidden');
-        }
     </script>
 </head>
-<body class="bg-background h-screen flex">
+<body class="bg-background min-h-screen flex flex-col">
