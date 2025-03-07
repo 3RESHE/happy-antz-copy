@@ -1,54 +1,45 @@
-<header class="bg-white border-b border-gray-200 p-4 flex items-center justify-between sticky top-0 z-50">
-    <!-- Hamburger Menu (Mobile Only) -->
-    <button id="mobile-menu-button" class="md:hidden text-gray-600 focus:outline-none">
-        <i class="fas fa-bars text-xl"></i>
-    </button>
-
-    <!-- Title -->
-    <h1 class="text-xl font-semibold text-gray-800">Admin Panel</h1>
-
-    <!-- User Dropdown -->
+<!-- Header -->
+<header class="bg-white border-b border-gray-200 p-4 flex justify-between items-center sticky top-0 z-30 shadow-sm">
+    <div class="flex items-center space-x-4">
+        <h1 class="text-xl font-semibold text-gray-800 hidden md:block">Admin Panel</h1>
+    </div>
     <div class="flex items-center space-x-4">
         @auth
-            <div class="relative flex items-center space-x-2">
-                <!-- User Name -->
-                <span class="text-sm font-medium text-gray-800 hidden sm:block truncate max-w-[150px]">{{ Auth::user()->name }}</span>
-                
-                <!-- Profile Icon Button -->
-                <button id="user-menu-button" 
-                        class="w-10 h-10 bg-accent rounded-full flex items-center justify-center text-gray-700 hover:bg-accent/80 transition duration-200 focus:outline-none shadow-sm">
-                    <i class="fas fa-user text-base"></i>
-                </button>
-
-                <!-- Dropdown Menu -->
-                <div id="user-menu" 
-                     class="hidden absolute right-0 mt-2 top-full w-52 bg-white border border-gray-200 rounded-lg shadow-xl overflow-hidden z-50">
-                    <div class="px-4 py-2 bg-gray-50 border-b border-gray-100">
-                        <span class="text-sm font-semibold text-gray-700 block truncate">{{ Auth::user()->name }}</span>
-                        <span class="text-xs text-gray-500 block">Admin</span>
+            <div class="relative flex items-center space-x-3">
+                <div class="relative group">
+                    <button id="user-menu-button" class="w-10 h-10 bg-accent rounded-full flex items-center justify-center focus:outline-none hover:bg-accent/80 transition-colors duration-200 shadow-sm">
+                        <span class="text-gray-700 font-medium text-lg group-hover:scale-110 transition-transform duration-200">
+                            {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
+                        </span>
+                    </button>
+                    <div id="user-menu" class="hidden absolute right-0 mt-2 w-56 bg-white border border-gray-200 rounded-lg shadow-xl overflow-hidden transform origin-top-right transition-all duration-200 scale-95 opacity-0 group-focus-within:scale-100 group-focus-within:opacity-100">
+                        <div class="px-4 py-3 bg-gray-50 border-b border-gray-200">
+                            <p class="text-sm font-medium text-gray-800">{{ Auth::user()->name }}</p>
+                            <p class="text-xs text-gray-500">{{ Auth::user()->email }}</p>
+                        </div>
+                        <a href="{{ route('profile.edit') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors duration-150 flex items-center space-x-2">
+                            <i class="fas fa-user-edit w-4"></i>
+                            <span>Profile</span>
+                        </a>
+                        <form method="POST" action="{{ route('logout') }}" class="w-full">
+                            @csrf
+                            <button type="submit" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-red-600 hover:text-white transition-colors duration-150 flex items-center space-x-2">
+                                <i class="fas fa-sign-out-alt w-4"></i>
+                                <span>Logout</span>
+                            </button>
+                        </form>
                     </div>
-                    <a href="{{ route('profile.edit') }}" 
-                       class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition duration-150 ease-in-out">
-                        Profile
-                    </a>
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <button type="submit" 
-                                class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition duration-150 ease-in-out">
-                            Logout
-                        </button>
-                    </form>
                 </div>
             </div>
         @else
             <div class="flex items-center space-x-4">
                 <a href="{{ route('login') }}">
-                    <button class="px-4 py-2 text-sm font-medium bg-primary text-white rounded-md hover:bg-primary/90 transition duration-200 shadow-sm">
+                    <button class="px-4 py-2 text-sm font-medium bg-primary text-white rounded-md hover:bg-primary/90 transition-colors duration-200 shadow-sm">
                         Login
                     </button>
                 </a>
                 <a href="{{ route('register') }}">
-                    <button class="px-4 py-2 text-sm font-medium bg-primary text-white rounded-md hover:bg-primary/90 transition duration-200 shadow-sm">
+                    <button class="px-4 py-2 text-sm font-medium bg-primary text-white rounded-md hover:bg-primary/90 transition-colors duration-200 shadow-sm">
                         Register
                     </button>
                 </a>
@@ -57,35 +48,29 @@
     </div>
 </header>
 
+<!-- JavaScript -->
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        // User Dropdown
         const userMenuButton = document.getElementById("user-menu-button");
         const userMenu = document.getElementById("user-menu");
         if (userMenuButton) {
             userMenuButton.addEventListener("click", function (event) {
                 userMenu.classList.toggle("hidden");
+                userMenu.classList.toggle("scale-95");
+                userMenu.classList.toggle("opacity-0");
+                userMenu.classList.toggle("scale-100");
+                userMenu.classList.toggle("opacity-100");
                 event.stopPropagation();
             });
             document.addEventListener("click", function (event) {
                 if (!userMenu.contains(event.target) && event.target !== userMenuButton) {
-                    userMenu.classList.add("hidden");
+                    userMenu.classList.add("hidden", "scale-95", "opacity-0");
+                    userMenu.classList.remove("scale-100", "opacity-100");
                 }
             });
+            userMenu.addEventListener("click", function (event) {
+                event.stopPropagation();
+            });
         }
-
-        // Mobile Menu Toggle
-        const mobileMenuButton = document.getElementById("mobile-menu-button");
-        const sidebar = document.getElementById("sidebar");
-        mobileMenuButton.addEventListener("click", function () {
-            sidebar.classList.toggle("-translate-x-full");
-        });
-
-        // Close sidebar when clicking outside on mobile
-        document.addEventListener("click", function (event) {
-            if (!sidebar.contains(event.target) && !mobileMenuButton.contains(event.target) && !sidebar.classList.contains("-translate-x-full")) {
-                sidebar.classList.add("-translate-x-full");
-            }
-        });
     });
 </script>
